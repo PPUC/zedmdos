@@ -1,0 +1,12 @@
+
+# wifi configuration
+wifi_enabled=0
+wifi_ssid=
+wifi_key=
+
+# system
+timezone=Europe/Paris
+
+# what to play at boot
+# ip/clock/(keep empty for nothing)
+boot_play=ip

@@ -1,0 +1,11 @@
+menu "zedmdos"
+  source "$BR2_EXTERNAL_ZEDMDOS_PATH/package/zedmdos/zedmdos-initramfs/Config.in"
+  source "$BR2_EXTERNAL_ZEDMDOS_PATH/package/zedmdos/zedmdos-boot/Config.in"
+  source "$BR2_EXTERNAL_ZEDMDOS_PATH/package/zedmdos/dmd-simulator/Config.in"
+  source "$BR2_EXTERNAL_ZEDMDOS_PATH/package/zedmdos/libzedmd/Config.in"
+  source "$BR2_EXTERNAL_ZEDMDOS_PATH/package/zedmdos/libserum/Config.in"
+  source "$BR2_EXTERNAL_ZEDMDOS_PATH/package/zedmdos/libpupdmd/Config.in"
+  source "$BR2_EXTERNAL_ZEDMDOS_PATH/package/zedmdos/libdmdutil/Config.in"
+  source "$BR2_EXTERNAL_ZEDMDOS_PATH/package/zedmdos/cargs/Config.in"
+  source "$BR2_EXTERNAL_ZEDMDOS_PATH/package/zedmdos/sockpp/Config.in"
+endmenu

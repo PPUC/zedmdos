@@ -1,0 +1,78 @@
+#!/bin/sh
+
+test "${1}" != "start" && exit 0
+
+wifi_enabled=$(grep -E '^wifi_enabled=' /boot/configs/zedmdos.ini 2>/dev/null | sed -e s+'^wifi_enabled='++)
+wifi_ssid=
+wifi_key=
+wifi_hide=false
+
+if test "${wifi_enabled}" = 1
+then
+    wifi_ssid=$(grep -E '^wifi_ssid=' /boot/configs/zedmdos.ini 2>/dev/null | sed -e s+'^wifi_ssid='++)
+    wifi_key=$(grep -E '^wifi_key='   /boot/configs/zedmdos.ini 2>/dev/null | sed -e s+'^wifi_key='++)
+    wifi_hide=$(grep -E '^wifi_hide=' /boot/configs/zedmdos.ini 2>/dev/null | sed -e s+'^wifi_hide='++)
+fi
+
+wifi_configure() {
+    wifi_file="/var/lib/connman/zedmdos_wifi.config"
+
+    optionalPassphrase=
+    test -n "${wifi_key}" && optionalPassphrase="Passphrase=${wifi_key}"
+
+    if [ -n "${wifi_ssid}" -a "${wifi_enabled}" = "1" ];then
+        mkdir -p "/var/lib/connman" || return 1
+        cat > "${wifi_file}" <<-_EOF_
+		[global]
+		Name=zedmdos
+		[service_zedmdos_wifi]
+		Type=wifi
+		Name=${wifi_ssid}
+		Hidden=${wifi_hide}
+		${optionalPassphrase}
+		Autoconnect=true
+	_EOF_
+    fi
+}
+
+wifi_enable() {
+    connmanctl enable wifi >/dev/null 2>/dev/null
+    connmanctl scan   wifi >/dev/null 2>/dev/null
+}
+
+case "$1" in
+	start)
+	        wifi_configure
+	        printf "Starting connman: "
+		start-stop-daemon -S -q -m -b -p /var/run/connmand.pid --exec /usr/sbin/connmand -- -n -r
+
+		# wait connmann is started. otherwise, S10wifi is unable to execute connmanctl commands
+		N=0
+		connmanctl state 2>/dev/null | grep -qE '^[ ]*State[ ]='
+		while test $? -ne 0 -a $N -lt 5 # 5 tries
+		do
+		    N=$((N+1))
+		    sleep 1
+		    connmanctl state 2>/dev/null | grep -qE '^[ ]*State[ ]='
+		done
+		sleep 0.5
+
+		# can be done detached
+		wifi_enable &
+
+		echo "OK"
+		;;
+	stop)
+		printf "Stopping connman: "
+		start-stop-daemon -K -q -p /var/run/connmand.pid
+		echo "OK"
+		;;
+	restart | reload)
+		$0 stop
+		sleep 1
+		$0 start
+		;;
+	*)
+		echo "usage: $0 {start|stop|restart|reload}"
+		;;
+esac

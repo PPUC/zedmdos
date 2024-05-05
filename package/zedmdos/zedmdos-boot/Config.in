@@ -1,0 +1,27 @@
+config BR2_PACKAGE_ZEDMDOS_BOOT
+        bool "zedmdos-boot"
+
+        select BR2_PACKAGE_JQ
+	select BR2_PACKAGE_IPROUTE2
+
+        # network
+        select BR2_PACKAGE_AVAHI
+        select BR2_PACKAGE_AVAHI_DAEMON
+        select BR2_PACKAGE_AVAHI_LIBDNSSD_COMPATIBILITY
+        select BR2_PACKAGE_CONNMAN
+        select BR2_PACKAGE_CONNMAN_WIFI
+        select BR2_PACKAGE_CONNMAN_CLIENT
+
+        # wifi
+        select BR2_PACKAGE_WPA_SUPPLICANT
+        select BR2_PACKAGE_WPA_SUPPLICANT_CLI
+        select BR2_PACKAGE_WPA_SUPPLICANT_DBUS
+        select BR2_PACKAGE_WPA_SUPPLICANT_DBUS_INTROSPECTION
+        select BR2_PACKAGE_WPA_SUPPLICANT_WIRED
+        select BR2_PACKAGE_WPA_SUPPLICANT_WPA3
+        select BR2_PACKAGE_WPA_SUPPLICANT_NL80211
+        select BR2_PACKAGE_WPA_SUPPLICANT_WEXT
+
+	# clock
+	select BR2_PACKAGE_NTP
+	select BR2_TARGET_TZ_INFO

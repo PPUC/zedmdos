@@ -1,0 +1,48 @@
+#!/bin/sh
+
+test "${1}" = "stop" && dmd-play --clear
+test "${1}" != "start" && exit 0
+
+boot_play=$(grep -E '^boot_play=' /boot/configs/zedmdos.ini 2>/dev/null | sed -e s+'^boot_play='++)
+
+getCurrentIp() {
+    ip -j route get 1.1.1.1 2>/dev/null | jq -r '.[].prefsrc'
+}
+
+updateOnNewIp() {
+    ip monitor address |
+	(
+	    CIP=$(getCurrentIp)
+	    showIpMsg "${CIP}"
+	    while read ADDR
+	    do
+		if echo "${ADDR}" | grep -qE '^[0-9]+:'
+		then
+		    NIP=$(getCurrentIp)
+		    if test -n "${NIP}" -a "${NIP}" != "${CIP}"
+		    then
+			CIP=${NIP}
+			showIpMsg "${CIP}"
+		    fi
+		fi
+	    done
+	)
+}
+
+showIpMsg() {
+    if test -n "${1}"
+    then
+	dmd-play -t "ZeDMDos\n${1}" -r 0 -g 255
+    else
+	dmd-play -t "ZeDMDos" -r 0 -g 255
+    fi
+}
+
+case "${boot_play}" in
+     "ip")
+	 updateOnNewIp &
+	 ;;
+     "clock")
+	 dmd-play --clock &
+     ;;
+esac

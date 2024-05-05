@@ -1,0 +1,24 @@
+#!/bin/sh
+
+test "${1}" != "start" && exit 0
+
+mkdir -p /run/lock
+
+conf_hostname=$(grep -E '^hostname=' /boot/configs/zedmdos.ini 2>/dev/null | sed -e s+'^hostname='++)
+test -z "${conf_hostname}" && conf_hostname=zedmdos
+echo "${conf_hostname}" > /etc/hostname
+sed -i -e s+"#host-name=foo"+"host-name=${conf_hostname}"+ /etc/avahi/avahi-daemon.conf
+
+conf_domain=$(grep -E '^domain=' /boot/configs/zedmdos.ini 2>/dev/null | sed -e s+'^domain='++)
+test -z "${conf_domain}" && conf_domain=local
+sed -i -e s+"#domain-name=local"+"domain-name=${conf_domain}"+ /etc/avahi/avahi-daemon.conf
+
+conf_tz=$(grep -E '^timezone=' /boot/configs/zedmdos.ini 2>/dev/null | sed -e s+'^timezone='++)
+if test -n "${conf_tz}"
+then
+    if test -f "/usr/share/zoneinfo/${conf_tz}"
+    then
+        echo "${conf_tz}" > /etc/timezone
+        ln -sf "/usr/share/zoneinfo/${conf_tz}" /etc/localtime
+    fi
+fi
