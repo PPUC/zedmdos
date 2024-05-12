@@ -9,4 +9,4 @@ timezone=Europe/Paris
 
 # what to play at boot
 # ip/clock/(keep empty for nothing)
-boot_play=ip
+boot_play=

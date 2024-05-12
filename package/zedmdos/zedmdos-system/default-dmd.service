@@ -46,9 +46,13 @@ case "${boot_play}" in
 	 dmd-play --clock &
 	 ;;
      *)
+	 # default on the script
 	 if test -e /boot/configs/boot.sh
 	 then
 	     sh /boot/configs/boot.sh&
+	 else
+	     # else the ip
+	     updateOnNewIp &
 	 fi
 	 ;;
 esac
