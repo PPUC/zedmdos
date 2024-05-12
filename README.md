@@ -41,5 +41,6 @@ make bcm2711-build
 
 ## issues
 There is a know issue when you plug a zedmd and no pixelcade : the zedmd doesn't work.
+There is a know issue when you plug a pixelcade and no zedmd : the pixelcade doesn't work.
 
-Workaround : in dmdserver.ini, put disable the pixelcade.
+Workaround : in dmdserver.ini, disable the pixelcade/zedmd.
