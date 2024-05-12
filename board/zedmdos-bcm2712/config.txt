@@ -2,6 +2,4 @@ arm_64bit=1
 
 kernel=linux
 initramfs initrd.gz
-start_file=start4.elf
-fixup_file=fixup4.dat
 disable_splash=1

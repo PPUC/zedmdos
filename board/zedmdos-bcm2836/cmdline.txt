@@ -1,0 +1,1 @@
+dev=/dev/mmcblk0p1 rootwait console=tty1 loglevel=3 logo.nologo

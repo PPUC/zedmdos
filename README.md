@@ -3,6 +3,9 @@ image with dmdserver and dmd-play on a standalone rpi.
 
 ## compile
 
+### for rpi2, rpi3, rpi cm3, rpi zero 2
+make bcm2836-build
+
 ### for rpi4
 make bcm2711-build
 
