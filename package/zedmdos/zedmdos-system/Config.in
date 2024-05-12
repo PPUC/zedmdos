@@ -1,6 +1,15 @@
-config BR2_PACKAGE_ZEDMDOS_BOOT
-        bool "zedmdos-boot"
+config BR2_PACKAGE_ZEDMDOS_SYSTEM
+        bool "zedmdos-system"
 
+        select BR2_PACKAGE_ZEDMDOS_INITRAMFS
+        select BR2_PACKAGE_PYTHON3
+        select BR2_PACKAGE_DMD_SIMULATOR
+        select BR2_PACKAGE_LIBDMDUTIL
+        # for pillow functionnalities
+        select BR2_PACKAGE_FREETYPE
+        select BR2_PACKAGE_DEJAVU
+
+	# scripts
         select BR2_PACKAGE_JQ
 	select BR2_PACKAGE_IPROUTE2
 

@@ -44,5 +44,11 @@ case "${boot_play}" in
 	 ;;
      "clock")
 	 dmd-play --clock &
-     ;;
+	 ;;
+     *)
+	 if test -e /boot/configs/boot.sh
+	 then
+	     sh /boot/configs/boot.sh&
+	 fi
+	 ;;
 esac

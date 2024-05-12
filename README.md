@@ -1,12 +1,17 @@
 ## zedmdos
-image with dmdserver and dmd-play on a standalone rpi4.
+image with dmdserver and dmd-play on a standalone rpi.
 
 ## compile
-make bcm2711
+
+### for rpi4
+make bcm2711-build
+
+### for rpi5
+make bcm2711-build
 
 ## burn
 - format a fat32 sdcard
-- unzip zedmdos.zip on it
+- unzip zedmdos-x.zip on it
 - configure via files in configs directory
 
 ## what to do next ?
@@ -22,5 +27,16 @@ make bcm2711
 - from an other pc, download dmd-play : https://github.com/batocera-linux/dmd-simulator/blob/master/dmd-play.py
   this is a small program that can communicate with dmdserver to display image (jpg, png, animated gif), text, moving text, videos, clock, countdown, ...
 
+  for example : dmd-play.py --host 192.168.0.43 --countdown "2024-07-26 20:00:00" --countdown-header "PARIS 2024"
+
+- you can create a file named configs/boot.sh including this line (make boot_play empty in zedmdos.ini):
+
+  dmd-play --countdown "2024-07-26 20:00:00" --countdown-header "PARIS 2024" -r 0 -b 255
+
 ## how to shutdown ?
 - just power off. the sd card is turned read only. it can be cut off safely.
+
+## issues
+There is a know issue when you plug a zedmd and no pixelcade : the zedmd doesn't work.
+
+Workaround : in dmdserver.ini, put disable the pixelcade.

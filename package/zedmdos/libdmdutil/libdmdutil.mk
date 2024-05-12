@@ -28,6 +28,7 @@ define LIBDMDUTIL_INSTALL_SERVER
    mkdir -p $(TARGET_DIR)/etc/init.d
    install -m 0755 $(BR2_EXTERNAL_ZEDMDOS_PATH)/package/zedmdos/libdmdutil/dmd_server.service $(TARGET_DIR)/etc/init.d/S50dmd_server
    install -m 0644 $(@D)/dmdserver.ini $(BINARIES_DIR)/dmdserver.ini
+   sed -i -e s+'^Addr = localhost$$'+'Addr = 0.0.0.0'+ $(BINARIES_DIR)/dmdserver.ini
 endef
 
 LIBDMDUTIL_POST_INSTALL_TARGET_HOOKS += LIBDMDUTIL_INSTALL_SERVER
