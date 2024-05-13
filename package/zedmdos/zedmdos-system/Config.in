@@ -5,7 +5,9 @@ config BR2_PACKAGE_ZEDMDOS_SYSTEM
         select BR2_PACKAGE_PYTHON3
         select BR2_PACKAGE_DMD_SIMULATOR
         select BR2_PACKAGE_LIBDMDUTIL
-        # for pillow functionnalities
+        select BR2_PACKAGE_PPUC
+
+	# for pillow functionnalities
         select BR2_PACKAGE_FREETYPE
         select BR2_PACKAGE_DEJAVU
 

@@ -1,0 +1,67 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 16551cd..6b0eda9 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -56,9 +56,11 @@ set(PPUC_SOURCES
+ 
+ set(PPUC_INCLUDE_DIRS
+    src
+-   third-party/include
++   #third-party/include
+ )
+ 
++#find_library(YAMLCPP_LIBRARY NAMES yaml-cpp)
++
+ if(BUILD_SHARED)
+    add_library(ppuc_shared SHARED ${PPUC_SOURCES})
+ 
+@@ -76,10 +78,10 @@ if(BUILD_SHARED)
+       )
+       target_link_libraries(ppuc_shared PUBLIC serialport yaml-cpp)
+    elseif(PLATFORM STREQUAL "linux")
+-      target_link_directories(ppuc_shared PUBLIC
+-         third-party/runtime-libs/${PLATFORM}/${ARCH}
+-      )
+-      target_link_libraries(ppuc_shared PUBLIC -l:libserialport.so.0 -l:libyaml-cpp.so.0.8.0)
++      #target_link_directories(ppuc_shared PUBLIC
++      #   third-party/runtime-libs/${PLATFORM}/${ARCH}
++      #)
++      target_link_libraries(ppuc_shared PUBLIC serialport yaml-cpp)
+    endif()
+ 
+    if(PLATFORM STREQUAL "win" AND ARCH STREQUAL "x64")
+@@ -115,9 +117,9 @@ if(BUILD_SHARED)
+             COMMAND "${CMAKE_COMMAND}" -E copy "${CMAKE_SOURCE_DIR}/third-party/runtime-libs/${PLATFORM}/${ARCH}/*.dylib" "$<TARGET_FILE_DIR:ppuc_test>"
+          )
+       elseif(PLATFORM STREQUAL "linux")
+-         add_custom_command(TARGET ppuc_test POST_BUILD
+-            COMMAND "${CMAKE_COMMAND}" -E copy "${CMAKE_SOURCE_DIR}/third-party/runtime-libs/${PLATFORM}/${ARCH}/*.so.*" "$<TARGET_FILE_DIR:ppuc_test>"
+-         )
++         #add_custom_command(TARGET ppuc_test POST_BUILD
++         #   COMMAND "${CMAKE_COMMAND}" -E copy "${CMAKE_SOURCE_DIR}/third-party/runtime-libs/${PLATFORM}/${ARCH}/*.so.*" "$<TARGET_FILE_DIR:ppuc_test>"
++         #)
+       endif()
+    endif()
+ endif()
+@@ -168,14 +170,14 @@ if(BUILD_STATIC)
+             COMMAND "${CMAKE_COMMAND}" -E copy "${CMAKE_SOURCE_DIR}/third-party/runtime-libs/${PLATFORM}/${ARCH}/*.dylib" "$<TARGET_FILE_DIR:ppuc_test_s>"
+          )
+       elseif(PLATFORM STREQUAL "linux")
+-         target_link_directories(ppuc_test_s PUBLIC
+-            third-party/runtime-libs/${PLATFORM}/${ARCH}
+-         )
+-         target_link_libraries(ppuc_test_s PUBLIC ppuc_static -l:libserialport.so.0 -l:libyaml-cpp.so.0.8.0)
++         #target_link_directories(ppuc_test_s PUBLIC
++         #   third-party/runtime-libs/${PLATFORM}/${ARCH}
++         #)
++         target_link_libraries(ppuc_test_s PUBLIC ppuc_static serialport yaml-cpp)
+ 
+-         add_custom_command(TARGET ppuc_test_s POST_BUILD
+-           COMMAND "${CMAKE_COMMAND}" -E copy "${CMAKE_SOURCE_DIR}/third-party/runtime-libs/${PLATFORM}/${ARCH}/*.so.*" "$<TARGET_FILE_DIR:ppuc_test_s>"
+-         )
++         #add_custom_command(TARGET ppuc_test_s POST_BUILD
++         #  COMMAND "${CMAKE_COMMAND}" -E copy "${CMAKE_SOURCE_DIR}/third-party/runtime-libs/${PLATFORM}/${ARCH}/*.so.*" "$<TARGET_FILE_DIR:ppuc_test_s>"
++         #)
+       endif()
+    endif()
+ endif()
