@@ -29,6 +29,10 @@ define LIBDMDUTIL_INSTALL_SERVER
    install -m 0755 $(BR2_EXTERNAL_ZEDMDOS_PATH)/package/zedmdos/libdmdutil/dmd_server.service $(TARGET_DIR)/etc/init.d/S50dmd_server
    install -m 0644 $(@D)/dmdserver.ini $(BINARIES_DIR)/dmdserver.ini
    sed -i -e s+'^Addr = localhost$$'+'Addr = 0.0.0.0'+ $(BINARIES_DIR)/dmdserver.ini
+   # disable pixelcade and enable zedmd by default (both are causing issues cause of the current detection way)
+   sed -i -z -e s+'Set to 1 if Pixelcade is attached\nEnabled = 1'+"Set to 1 if Pixelcade is attached\nEnabled = 0"+ $(BINARIES_DIR)/dmdserver.ini
+   mkdir -p $(TARGET_DIR)/usr/share/dmdserver
+   cp $(BINARIES_DIR)/dmdserver.ini $(TARGET_DIR)/usr/share/dmdserver/default-config.ini
 endef
 
 LIBDMDUTIL_POST_INSTALL_TARGET_HOOKS += LIBDMDUTIL_INSTALL_SERVER
