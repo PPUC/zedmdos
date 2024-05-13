@@ -1,0 +1,12 @@
+diff --git a/cmake/libpinmame/CMakeLists_linux-x64.txt b/cmake/libpinmame/CMakeLists_linux-x64.txt
+index 2454cfe..24e8564 100644
+--- a/cmake/libpinmame/CMakeLists_linux-x64.txt
++++ b/cmake/libpinmame/CMakeLists_linux-x64.txt
+@@ -597,7 +597,6 @@ find_package(ZLIB)
+ 
+ target_link_libraries(pinmame
+    ZLIB::ZLIB
+-   pthread
+ )
+ 
+ set_target_properties(pinmame PROPERTIES

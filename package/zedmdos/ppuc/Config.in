@@ -1,0 +1,15 @@
+config BR2_PACKAGE_PPUC
+    bool "ppuc"
+
+    select BR2_PACKAGE_LIBDMDUTIL
+    select BR2_PACKAGE_LIBPINMAME
+    select BR2_PACKAGE_CARGS
+    select BR2_PACKAGE_YAML_CPP
+    select BR2_PACKAGE_OPENAL
+    select BR2_PACKAGE_LIBPPUC
+
+    help
+      Pinball Power-Up Controllers
+      
+      https://github.com/PPUC/ppuc
+
