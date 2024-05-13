@@ -13,5 +13,7 @@ cp "${BR2_EXTERNAL_ZEDMDOS_PATH}/board/zedmdos-bcm2711/config.txt"   "${BINARIES
 cp "${BINARIES_DIR}/zedmdos.ini.sample" "${BINARIES_DIR}/zedmdos/configs/zedmdos.ini.sample"   || exit 1
 cp "${BINARIES_DIR}/dmdserver.ini"      "${BINARIES_DIR}/zedmdos/configs/dmdserver.ini.sample" || exit 1
 
-cd "${BINARIES_DIR}/zedmdos" && zip -qr "${BINARIES_DIR}/zedmdos-bcm2711.zip" * || exit 1
-echo "${BINARIES_DIR}/zedmdos-bcm2711.zip" >&2
+ZVERSION=$(cat "${TARGET_DIR}/etc/zedmdos.version")
+
+cd "${BINARIES_DIR}/zedmdos" && zip -qr "${BINARIES_DIR}/zedmdos-bcm2711-${ZVERSION}.zip" * || exit 1
+echo "${BINARIES_DIR}/zedmdos-bcm2711-${ZVERSION}.zip" >&2
