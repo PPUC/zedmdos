@@ -6,7 +6,12 @@ start() {
         echo -n "Starting dmd-server: "
 
         ARGS="-a 0.0.0.0"
-        test -e /boot/configs/dmdserver.ini && ARGS="${ARGS} -c /boot/configs/dmdserver.ini"
+        if test -e /boot/configs/dmdserver.ini
+        then
+            ARGS="${ARGS} -c /boot/configs/dmdserver.ini"
+        else
+            ARGS="${ARGS} -c /usr/share/dmdserver/default-config.ini"
+        fi
         start-stop-daemon -S -b -q -m -p $PIDFILE --exec /usr/bin/dmdserver -- ${ARGS} >/dev/null &
         RETVAL=$?
 
