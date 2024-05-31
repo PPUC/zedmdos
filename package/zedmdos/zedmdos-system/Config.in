@@ -6,14 +6,15 @@ config BR2_PACKAGE_ZEDMDOS_SYSTEM
         select BR2_PACKAGE_DMD_SIMULATOR
         select BR2_PACKAGE_LIBDMDUTIL
         select BR2_PACKAGE_PPUC
+        select BR2_PACKAGE_ZEDMDOS_API
 
-	# for pillow functionnalities
+        # for pillow functionnalities
         select BR2_PACKAGE_FREETYPE
         select BR2_PACKAGE_DEJAVU
 
-	# scripts
+        # scripts
         select BR2_PACKAGE_JQ
-	select BR2_PACKAGE_IPROUTE2
+        select BR2_PACKAGE_IPROUTE2
 
         # network
         select BR2_PACKAGE_AVAHI
@@ -33,6 +34,6 @@ config BR2_PACKAGE_ZEDMDOS_SYSTEM
         select BR2_PACKAGE_WPA_SUPPLICANT_NL80211
         select BR2_PACKAGE_WPA_SUPPLICANT_WEXT
 
-	# clock
-	select BR2_PACKAGE_NTP
-	select BR2_TARGET_TZ_INFO
+        # clock
+        select BR2_PACKAGE_NTP
+        select BR2_TARGET_TZ_INFO

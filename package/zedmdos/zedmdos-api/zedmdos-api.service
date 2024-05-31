@@ -1,0 +1,36 @@
+#!/bin/sh
+
+PIDFILE=/var/run/zedmdos-api.pid
+
+start() {
+        echo -n "Starting zedmdos-api: "
+
+        start-stop-daemon -S -b -q -m -p $PIDFILE --exec /usr/bin/zedmdos-api -- >/dev/null &
+        RETVAL=$?
+        echo "OK"
+        return $RETVAL
+}
+
+stop() {
+        echo -n "Stopping zedmdos-api: "
+
+        start-stop-daemon -K -q -p $PIDFILE
+	RETVAL=$?
+	
+        echo "OK"
+        return $RETVAL
+}
+
+case "$1" in
+        start)
+                start
+                ;;
+        stop)
+                stop
+                ;;
+        *)
+                echo "Usage: $0 {start|stop}"
+                exit 1
+esac
+
+exit $?

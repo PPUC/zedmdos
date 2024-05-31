@@ -1,0 +1,2 @@
+config BR2_PACKAGE_ZEDMDOS_API
+        bool "zedmdos-api"

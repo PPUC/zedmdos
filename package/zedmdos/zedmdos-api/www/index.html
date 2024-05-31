@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>ZeDMDos API</title>
+    <style>
+      body {
+	  background-color: #fff;
+      }
+      h1 {
+	  font-size: 1.2rem;
+	  text-align: center;
+      }
+
+      #contents {
+	  padding: 1rem;
+      }
+
+      #content-countdown, #content-text, #content-image, #content-clear {
+	  display: none;
+      }
+
+      .tab-input {
+	  margin: 1.5rem 0rem 1rem 0rem;
+      }
+
+      #tabs {
+	  text-align: center;
+	  margin: 4rem 0rem 4rem 0rem;
+      }
+
+      .tab {
+	  font-size: 5.5rem;
+	  margin-right: 1.6rem;
+	  padding: 1.2rem;
+	  border-radius: 1.5rem;
+	  cursor: pointer;
+	  background-color: #adf;
+      }
+
+      .tab-content {
+	  margin-left: 5rem;
+	  font-size: 1.5rem;
+      }
+
+      #clock-color, #countdown-color, #text-color {
+	  width: 7rem;
+	  height: 7rem;
+	  margin-bottom: 1rem;
+      }
+
+      #code-zone-dmdplay, #code-zone-curl {
+	  font-size: 0.8em;
+	  background-color: #eee;
+	  padding: 1rem 0rem 1rem 0rem;
+	  margin: 1rem 0rem 1rem 0rem;
+      }
+
+      .image-miniature {
+	  max-width: 128px;
+	  max-height: 128px;
+	  margin: 5px;
+	  cursor: pointer;
+      }
+      
+    </style>
+    <script src="js/zedmdos-api.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div id="tabs">
+      <span class="tab" id="tab-clock">&#x1F550;</span>
+      <span class="tab" id="tab-countdown">&#x23F3;</span>
+      <span class="tab" id="tab-text">&#x1F524;</span>
+      <span class="tab" id="tab-image">&#x1F3A8;</span>
+      <span class="tab" id="tab-clear">&#x1F9F9;</span>
+    </div>
+    <div id="contents">
+      <div id="content-clock" class="tab-content">
+        <div style="float: left; margin-right: 5rem;">
+          <input class="tab-input" type="color" id="clock-color" value="#417af7" />
+        </div>
+        <div style="float: left; font-size: 3rem;">
+          <input class="tab-input" type="radio" name="clock-style" id="clock-h24" value="h24" /><label for="clock-h24">21:10</label>
+          <br style="margin-bottom: 2rem;" />
+          <input class="tab-input" type="radio" name="clock-style" id="clock-h24s" value="h24s" checked="checked" /><label for="clock-h24s">21:10:30</label>
+          <br style="margin-bottom: 2rem;" />
+          <input class="tab-input" type="radio" name="clock-style" id="clock-h12" value="h12" /><label for="clock-h12">9:10 AM</label>
+          <br style="margin-bottom: 2rem;" />
+          <input class="tab-input" type="radio" name="clock-style" id="clock-h12s" value="h12s" /><label for="clock-h12s">9:10:30 AM</label>
+          <br style="margin-bottom: 2rem;" />
+          <input class="tab-input" type="radio" name="clock-style" id="clock-custom-enabled" value="custom" /><label for="clock-custom-enabled">custom</label>
+          <input type="text" id="clock-custom" value="%H:%M:%S\n%a %d %B" />
+          <a href="https://docs.python.org/3.6/library/datetime.html#strftime-and-strptime-behavior" target="zedmd-api-doc">&#x1F4D8;</a>
+        </div>
+        <div style="clear:both"></div>
+      </div>
+
+      <div id="content-countdown" class="tab-content">
+        <div style="float: left; margin-right: 5rem;">
+          <input class="tab-input" type="color" id="countdown-color" value="#417af7" />
+        </div>
+        To: <input type="datetime-local" id="countdown-to" class="tab-input" style="font-size: 3rem;" />
+	<div style="clear:both"></div>
+      </div>
+
+      <div id="content-text" class="tab-content">
+	<div style="float: left; margin-right: 5rem;">
+          <input class="tab-input" type="color" id="text-color" value="#417af7" />
+        </div>
+        <input class="tab-input" type="text" id="text-text" value="ZeDMDos" style="font-size: 3rem;" />
+	<div style="clear:both"></div>
+      </div>
+
+      <div id="content-image" class="tab-content">
+	<div id="image-images"></div>
+      </div>
+
+      <div id="content-clear" class="tab-content">
+      </div>
+
+    </div>
+    <div id="code-zone-dmdplay"></div>
+    <div id="code-zone-curl"></div>
+
+  </body>
+</html>
