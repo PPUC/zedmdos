@@ -6,6 +6,7 @@ wifi_key=
 
 # system
 timezone=Europe/Paris
+sshd_enabled=0
 
 # what to play at boot
 # ip/clock/(keep empty for nothing)

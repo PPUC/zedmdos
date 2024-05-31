@@ -22,4 +22,13 @@ endef
 
 ZEDMDOS_SYSTEM_POST_INSTALL_TARGET_HOOKS += ZEDMDOS_SYSTEM_INSTALL_CONFIG
 
+define ZEDMDOS_SYSTEM_INSTALL_SSHD_CONFIG
+	sed -i -e s+"^#PermitRootLogin.*"+"PermitRootLogin yes"+ $(TARGET_DIR)/etc/ssh/sshd_config
+	sed -i -e s+"^# sshd        Starts sshd."+"grep -qE '^sshd_enabled=1$$' /boot/configs/zedmdos.ini || exit 0"+ $(TARGET_DIR)/etc/init.d/S50sshd
+endef
+
+# openssh as prerequisite to configure sshd_config
+ZEDMDOS_SYSTEM_DEPENDENCIES += openssh
+ZEDMDOS_SYSTEM_POST_INSTALL_TARGET_HOOKS += ZEDMDOS_SYSTEM_INSTALL_SSHD_CONFIG
+
 $(eval $(generic-package))

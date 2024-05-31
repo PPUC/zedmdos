@@ -37,3 +37,7 @@ config BR2_PACKAGE_ZEDMDOS_SYSTEM
         # clock
         select BR2_PACKAGE_NTP
         select BR2_TARGET_TZ_INFO
+
+	# usefull for devs, but disabled by default
+        select BR2_PACKAGE_OPENSSH
+        select BR2_PACKAGE_OPENSSH_SERVER
