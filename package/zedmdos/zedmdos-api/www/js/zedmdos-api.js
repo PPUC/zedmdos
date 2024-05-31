@@ -125,7 +125,11 @@ function updateImageTab() {
 	    data.forEach(function(obj) {
 	    	html += "<img class=\"image-miniature\" src=\"images/contents/" + obj + "\" onclick=\"updateImage('" + obj + "')\" />";
 	    });
-	    if(html == "") html = "Put your .png, .gif in the configs/images folder.";
+	    if(html == "") {
+		html = "<img class=\"image-miniature\" src=\"images/contents/zedmd.png\" onclick=\"updateImage('zedmd.png')\" />";
+		html += "<br />Put your .png, .gif in the configs/images folder.";
+		fetch('/image?file=zedmd.png', { method: "POST" }); // do nothing in case of error
+	    }
 	    document.getElementById("image-images").innerHTML = html;
 	});
 }

@@ -14,6 +14,7 @@ class ZeDMDApiHTTPRequestHandler(BaseHTTPRequestHandler):
 
     files_root  = "/usr/share/zedmd-api/www"
     images_root = "/boot/configs/images"
+    image_logo  = "/usr/share/zedmd-api/logo.png"
 
     def do_GET(self):
         try:
@@ -35,7 +36,10 @@ class ZeDMDApiHTTPRequestHandler(BaseHTTPRequestHandler):
                     self.send_response(200)
                     self.send_header('Content-type', 'application/octet-stream')
                     self.end_headers()
-                    filename = ZeDMDApiHTTPRequestHandler.images_root + "/" + imagename
+                    if imagename == "zedmd.png":
+                        filename = ZeDMDApiHTTPRequestHandler.image_logo
+                    else:
+                        filename = ZeDMDApiHTTPRequestHandler.images_root + "/" + imagename
                     with open(filename, 'rb') as fh:
                         self.wfile.write(fh.read())
                 else:
@@ -142,7 +146,10 @@ class ZeDMDApiHTTPRequestHandler(BaseHTTPRequestHandler):
                 file = None
                 if "file" in p and len(p["file"]) == 1:
                     if ZeDMDApiHTTPRequestHandler.checkfile(p["file"][0]):
-                        file = ZeDMDApiHTTPRequestHandler.images_root + "/" + p["file"][0]
+                        if p["file"][0] == "zedmd.png":
+                            file = ZeDMDApiHTTPRequestHandler.image_logo
+                        else:
+                            file = ZeDMDApiHTTPRequestHandler.images_root + "/" + p["file"][0]
                 if file is not None:
                     subprocess.Popen(["dmd-play", "--file", file])
                 self.send_response(200)
