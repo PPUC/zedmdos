@@ -37,3 +37,13 @@ config BR2_PACKAGE_ZEDMDOS_SYSTEM
         # clock
         select BR2_PACKAGE_NTP
         select BR2_TARGET_TZ_INFO
+
+if BR2_PACKAGE_ZEDMDOS_SYSTEM
+
+config BR2_PACKAGE_ZEDMDOS_SYSTEM_DEVELOPPER
+        bool "zedmdos-system-developper"
+        #default y
+        select BR2_PACKAGE_OPENSSH
+        select BR2_PACKAGE_OPENSSH_SERVER
+
+endif

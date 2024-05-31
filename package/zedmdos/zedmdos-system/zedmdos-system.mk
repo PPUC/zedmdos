@@ -22,4 +22,14 @@ endef
 
 ZEDMDOS_SYSTEM_POST_INSTALL_TARGET_HOOKS += ZEDMDOS_SYSTEM_INSTALL_CONFIG
 
+define ZEDMDOS_SYSTEM_INSTALL_CONFIG
+	sed -i -e s+"^#PermitRootLogin.*"+"PermitRootLogin yes"+ $(TARGET_DIR)/etc/ssh/sshd_config
+endef
+
+# openssh as prerequisite to configure sshd_config
+ifdef BR2_PACKAGE_ZEDMDOS_SYSTEM_DEVELOPPER
+ZEDMDOS_SYSTEM_DEPENDENCIES += openssh
+ZEDMDOS_SYSTEM_POST_INSTALL_TARGET_HOOKS += ZEDMDOS_SYSTEM_INSTALL_SSHD_CONFIG
+endif
+
 $(eval $(generic-package))
