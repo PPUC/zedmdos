@@ -25,6 +25,8 @@ make bcm2711-build
 - configure dmdserver : rename the file configs/dmdserver.ini.sample to dmdserver.ini
   - if you do so, set Addr = 0.0.0.0 to remain open to the rest of the network
   - you can disable ZeDMD or Pixelcade if you've none of them
+- connect via http on the dmd to discover the display things and discover the api and dmd-play
+- enable ssh and develop more things :-P
 
 ## how to display image, text or video ?
 - from an other pc, download dmd-play : https://github.com/batocera-linux/dmd-simulator/blob/master/dmd-play.py
@@ -38,6 +40,12 @@ make bcm2711-build
 
 ## how to shutdown ?
 - just power off. the sd card is turned read only. it can be cut off safely.
+
+## how to configure (edit /boot) without removing the sd card
+- mount -o remount,rw /boot
+
+## how to edit the system (except /boot)
+- you can edit files (thanks to fsoverlay and tmpfs), but after a reboot, files will remain as there were : the os is a read only image. You need to recompile.
 
 ## issues
 There is a know issue when you plug a zedmd and no pixelcade : the zedmd doesn't work.
