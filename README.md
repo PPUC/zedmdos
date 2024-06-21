@@ -3,6 +3,8 @@ image with dmdserver and dmd-play on a standalone rpi.
 
 ## compile
 
+git clone https://github.com/PPUC/zedmdos.git && cd zedmdos && git submodule init && git submodule update && make bcm2711-build
+
 ### for rpi1, rpi zero w/wh
 make bcm2835-build
 
