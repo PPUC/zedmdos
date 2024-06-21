@@ -1,0 +1,3 @@
+kernel=linux
+initramfs initrd.gz
+disable_splash=1
