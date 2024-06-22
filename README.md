@@ -17,6 +17,10 @@ make bcm2711-build
 ### for rpi5
 make bcm2711-build
 
+## compilation from wsl
+sudo apt install make gcc g++ unzip bc bzip2 zip
+git clone https://github.com/PPUC/zedmdos.git && cd zedmdos && git submodule init && git submodule update && PATH=/usr/sbin:/usr/bin:/sbin make bcm2711-build
+
 ## burn
 - format a fat32 sdcard
 - unzip zedmdos-x.zip on it
