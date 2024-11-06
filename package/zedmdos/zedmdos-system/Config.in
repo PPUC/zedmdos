@@ -41,3 +41,7 @@ config BR2_PACKAGE_ZEDMDOS_SYSTEM
 	# usefull for devs, but disabled by default
         select BR2_PACKAGE_OPENSSH
         select BR2_PACKAGE_OPENSSH_SERVER
+
+	# dev libs
+	select BR2_PACKAGE_PYTHON_SERIAL
+	select BR2_PACKAGE_PYTHON_PYYAML
