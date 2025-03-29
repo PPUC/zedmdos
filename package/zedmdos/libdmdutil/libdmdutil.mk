@@ -3,8 +3,8 @@
 # libdmdutil
 #
 ################################################################################
-# Version: Commits on May 11, 2024
-LIBDMDUTIL_VERSION = fc29cd7d8271c34999a125fbbc123a71ace571c9
+# Version: Commits on Mar 6, 2025
+LIBDMDUTIL_VERSION = f54f084e995782948d30554391ea57a02010d3db
 LIBDMDUTIL_SITE = $(call github,vpinball,libdmdutil,$(LIBDMDUTIL_VERSION))
 LIBDMDUTIL_LICENSE = BSD-3-Clause
 LIBDMDUTIL_LICENSE_FILES = LICENSE
@@ -25,6 +25,7 @@ LIBDMDUTIL_INSTALL_STAGING = YES
 
 define LIBDMDUTIL_INSTALL_SERVER
    $(INSTALL) -D -m 0755 $(LIBDMDUTIL_BUILDDIR)/dmdserver $(TARGET_DIR)/usr/bin/dmdserver
+   install -m 0755 $(BR2_EXTERNAL_ZEDMDOS_PATH)/package/zedmdos/libdmdutil/dmdserver-retry.sh $(TARGET_DIR)/usr/bin/dmdserver-retry
    mkdir -p $(TARGET_DIR)/etc/init.d
    install -m 0755 $(BR2_EXTERNAL_ZEDMDOS_PATH)/package/zedmdos/libdmdutil/dmd_server.service $(TARGET_DIR)/etc/init.d/S50dmd_server
    install -m 0644 $(@D)/dmdserver.ini $(BINARIES_DIR)/dmdserver.ini

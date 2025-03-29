@@ -5,18 +5,11 @@ PIDFILE=/var/run/dmd_server.pid
 start() {
         echo -n "Starting dmd-server: "
 
-        ARGS="-a 0.0.0.0"
-        if test -e /boot/configs/dmdserver.ini
-        then
-            ARGS="${ARGS} -c /boot/configs/dmdserver.ini"
-        else
-            ARGS="${ARGS} -c /usr/share/dmdserver/default-config.ini"
-        fi
-        start-stop-daemon -S -b -q -m -p $PIDFILE --exec /usr/bin/dmdserver -- ${ARGS} >/dev/null &
+        start-stop-daemon -S -b -q -m -p $PIDFILE --exec /usr/bin/dmdserver-retry >/dev/null &
         RETVAL=$?
 
 	# wait that the port is open before switching to other services
-	N=10 # maximum 5 sec
+	N=30 # maximum 30 sec
 	while test ${N} -gt 0
 	do
 	    if nc -z localhost 6789

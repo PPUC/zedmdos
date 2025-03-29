@@ -3,12 +3,12 @@
 # libzedmd
 #
 ################################################################################
-# Version: Commits on Apr 5, 2024
-LIBZEDMD_VERSION = 00f2e35a679969fbb508948054160b84aa76247e
+# Version: Commits on Feb 16, 2025
+LIBZEDMD_VERSION = 893e59cc2f671be17455a68837f4618936006785
 LIBZEDMD_SITE = $(call github,PPUC,libzedmd,$(LIBZEDMD_VERSION))
 LIBZEDMD_LICENSE = GPLv3
 LIBZEDMD_LICENSE_FILES = LICENSE
-LIBZEDMD_DEPENDENCIES = libserialport
+LIBZEDMD_DEPENDENCIES = libserialport sockpp
 LIBZEDMD_SUPPORTS_IN_SOURCE_BUILD = NO
 
 LIBZEDMD_CONF_OPTS += -DCMAKE_BUILD_TYPE=Release
