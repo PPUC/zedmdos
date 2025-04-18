@@ -3,7 +3,7 @@ image with dmdserver and dmd-play on a standalone rpi.
 
 ## compile
 
-git clone https://github.com/PPUC/zedmdos.git && cd zedmdos && git submodule init && git submodule update && make bcm2711-build
+git clone https://github.com/PPUC/zedmdos.git && cd zedmdos && git submodule init && git submodule update && make build-docker-image && make bcm2711-build
 
 ### for rpi1, rpi zero w/wh
 make bcm2835-build
@@ -21,6 +21,12 @@ make bcm2711-build
 sudo apt install make gcc g++ unzip bc bzip2 zip
 
 git clone https://github.com/PPUC/zedmdos.git && cd zedmdos && git submodule init && git submodule update && PATH=/usr/sbin:/usr/bin:/sbin make bcm2711-build
+
+### by default, docker is used to compile zedmdos. The following command creates the docker image used to compile
+make build-docker-image
+
+### the following command can be used to build a single package
+make bcm2711-pkg PKG=connman
 
 ## burn
 - format a fat32 sdcard
