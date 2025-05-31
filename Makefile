@@ -22,7 +22,7 @@ define MAKE_BUILDROOT
 endef
 
 else # DIRECT_BUILD
-	DOCKER         ?= docker
+	DOCKER ?= docker
 
 	ifndef BATCH_MODE
 		DOCKER_OPTS += -i
@@ -38,7 +38,8 @@ define RUN_DOCKER
 		-w /$* \
 		-v /etc/passwd:/etc/passwd:ro \
 		-v /etc/group:/etc/group:ro \
-		-u $(UID):$(GID) \
+		-u $(shell id -u):$(shell id -g) \
+		--platform=linux/arm64 \
 		$(DOCKER_OPTS) \
 		$(DOCKER_REPO)/$(IMAGE_NAME)
 endef
@@ -56,7 +57,7 @@ _check_docker:
 	$(if $(shell which $(DOCKER) 2>/dev/null),, $(error "$(DOCKER) not found!"))
 
 build-docker-image: _check_docker
-	$(DOCKER) build . -t $(DOCKER_REPO)/$(IMAGE_NAME)
+	$(DOCKER) build --platform=linux/arm64 . -t $(DOCKER_REPO)/$(IMAGE_NAME)
 	@touch .docker-image-available
 
 .docker-image-available:
