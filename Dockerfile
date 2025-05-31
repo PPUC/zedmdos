@@ -5,6 +5,10 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get install -y -o APT::Immediate-Configure=0 \
     build-essential \
+    g++ \
+    libstdc++-12-dev \
+    cmake \
+    ninja-build \
     locales \
     file \
     wget \
@@ -13,10 +17,9 @@ RUN apt-get update && \
     zip \
     rsync \
     bc \
-    gcc-aarch64-linux-gnu \
-    binutils-aarch64-linux-gnu \
-    libc6-dev-arm64-cross \
-    qemu-user-static \
+    git \
+    python3 \
+    python3-pip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 

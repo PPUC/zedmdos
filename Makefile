@@ -30,6 +30,7 @@ else # DIRECT_BUILD
 
 define RUN_DOCKER
 	$(DOCKER) run -t --init --rm \
+		-e SOURCE_DATE_EPOCH="$(date +%s)" \
 		-e HOME \
 		-v $(PROJECT_DIR):/build \
 		-v $(DL_DIR):/build/buildroot/dl \
