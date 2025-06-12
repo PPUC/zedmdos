@@ -10,10 +10,11 @@ getCurrentIp() {
 }
 
 updateOnNewIp() {
+    MAIN=$1
     ip monitor address |
 	(
 	    CIP=$(getCurrentIp)
-	    showIpMsg "${CIP}"
+	    showIpMsg "${CIP}" "${MAIN}"
 	    while read ADDR
 	    do
 		if echo "${ADDR}" | grep -qE '^[0-9]+:'
@@ -22,7 +23,7 @@ updateOnNewIp() {
 		    if test -n "${NIP}" -a "${NIP}" != "${CIP}"
 		    then
 			CIP=${NIP}
-			showIpMsg "${CIP}"
+			showIpMsg "${CIP}" "${MAIN}"
 		    fi
 		fi
 	    done
@@ -30,17 +31,25 @@ updateOnNewIp() {
 }
 
 showIpMsg() {
-    if test -n "${1}"
+    if test "${2}" = 1
     then
-	dmd-play -t "ZeDMDos\n${1}" -r 0 -g 255
+	if test -n "${1}"
+	then
+	    dmd-play -t "ZeDMDos\n${1}" -r 0 -g 255
+	else
+	    dmd-play -t "ZeDMDos" -r 0 -g 255
+	fi
     else
-	dmd-play -t "ZeDMDos" -r 0 -g 255
+	if test -n "${1}"
+	then
+	    dmd-play --overlay --overlay-time 5000 -t "ZeDMDos\n${1}" -r 0 -g 255
+	fi
     fi
 }
 
 case "${boot_play}" in
      "ip")
-	 updateOnNewIp &
+	 updateOnNewIp 1 &
 	 ;;
      "clock")
 	 dmd-play --clock &
@@ -51,8 +60,9 @@ case "${boot_play}" in
 	 then
 	     sh /boot/configs/boot.sh&
 	 else
-	     # else the ip
-	     updateOnNewIp &
+	     # else the clock and ip
+	     dmd-play --clock --no-seconds -r 65 -g 122 -b 247 &
+	     updateOnNewIp 0 &
 	 fi
 	 ;;
 esac

@@ -16,6 +16,9 @@ config BR2_PACKAGE_ZEDMDOS_SYSTEM
         select BR2_PACKAGE_JQ
         select BR2_PACKAGE_IPROUTE2
 
+	# usb tools
+	select BR2_PACKAGE_USBMOUNT
+
         # network
         select BR2_PACKAGE_AVAHI
         select BR2_PACKAGE_AVAHI_DAEMON

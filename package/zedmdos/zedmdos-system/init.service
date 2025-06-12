@@ -22,3 +22,19 @@ then
         ln -sf "/usr/share/zoneinfo/${conf_tz}" /etc/localtime
     fi
 fi
+
+# user directories
+if mkdir -p /userdata
+then
+    # no error check to let other trying to work
+    ln -sf /boot/configs      /userdata/configs
+    ln -sf /boot/colorization /userdata/colorization
+fi
+
+if test -e /boot/dumps
+then
+    if mount -o remount,rw /boot
+    then
+	ln -sf /boot/dumps /userdata/dumps
+    fi
+fi

@@ -1,0 +1,23 @@
+#!/bin/sh
+
+/usr/share/usbmount/usbmount "$1"
+
+if test "$1" = "add"
+then
+    # find the mount point and link /userdata/dump on it / hum, not nice if there is a space in the KEY name
+    X=$(grep -E "^${DEVNAME} " /proc/mounts | head -1 | cut -d ' ' -f 2)
+    if test -n "${X}" -a -e "${X}"
+    then
+	mkdir -p "${X}/dumps" || exit 1
+	if test -L /userdata/dumps
+	then
+	    unlink /userdata/dumps || exit 1
+	fi
+	ln -sf "${X}/dumps" "/userdata/dumps" || exit 1
+	XSTR=$(basename "${X}")
+	dmd-play --overlay --overlay-time 5000 -t "${XSTR}\nplugged"
+    fi
+else
+    # remove the link
+    test -L /userdata/dumps && unlink /userdata/dumps
+fi
