@@ -4,9 +4,9 @@
 #
 ################################################################################
 # Version: Commits on Mar 6, 2025
-LIBDMDUTIL_VERSION = f54f084e995782948d30554391ea57a02010d3db
+LIBDMDUTIL_VERSION = b8389b319cd9d1d38deaf107ae160733249b30d8
 LIBDMDUTIL_SITE = $(call github,vpinball,libdmdutil,$(LIBDMDUTIL_VERSION))
-LIBDMDUTIL_LICENSE = BSD-3-Clause
+LIBDMDUTIL_LICENSE = GPLv3
 LIBDMDUTIL_LICENSE_FILES = LICENSE
 LIBDMDUTIL_DEPENDENCIES = libserialport sockpp cargs libzedmd libserum libpupdmd
 LIBDMDUTIL_SUPPORTS_IN_SOURCE_BUILD = NO

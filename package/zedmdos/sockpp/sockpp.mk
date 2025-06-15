@@ -3,8 +3,8 @@
 # sockpp
 #
 ################################################################################
-# Version: Commits on Mar 11, 2024
-SOCKPP_VERSION = e6c4688a576d95f42dd7628cefe68092f6c5cd0f
+# Version: Commits on Mar 30, 2025
+SOCKPP_VERSION = afdeacba9448c7a77194eed6ab8e1c0b1653c79a
 SOCKPP_SITE = $(call github,fpagliughi,sockpp,$(SOCKPP_VERSION))
 SOCKPP_LICENSE = BSD-3-Clause
 SOCKPP_LICENSE_FILES = LICENSE
