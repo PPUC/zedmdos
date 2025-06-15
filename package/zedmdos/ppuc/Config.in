@@ -5,11 +5,12 @@ config BR2_PACKAGE_PPUC
     select BR2_PACKAGE_LIBPINMAME
     select BR2_PACKAGE_CARGS
     select BR2_PACKAGE_YAML_CPP
-    select BR2_PACKAGE_OPENAL
+    select BR2_PACKAGE_SDL3
+    select BR2_PACKAGE_SDL3_IMAGE
     select BR2_PACKAGE_LIBPPUC
 
     help
-      Pinball Power-Up Controllers
+      Pinball Power-Up Controller
       
       https://github.com/PPUC/ppuc
 

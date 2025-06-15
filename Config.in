@@ -13,4 +13,6 @@ menu "zedmdos"
   source "$BR2_EXTERNAL_ZEDMDOS_PATH/package/zedmdos/ppuc/Config.in"
   source "$BR2_EXTERNAL_ZEDMDOS_PATH/package/zedmdos/cargs/Config.in"
   source "$BR2_EXTERNAL_ZEDMDOS_PATH/package/zedmdos/sockpp/Config.in"
+  source "$BR2_EXTERNAL_ZEDMDOS_PATH/package/zedmdos/sdl3/Config.in"
+  source "$BR2_EXTERNAL_ZEDMDOS_PATH/package/zedmdos/sdl3_image/Config.in"
 endmenu
