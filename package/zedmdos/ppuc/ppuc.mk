@@ -9,7 +9,7 @@ PPUC_SITE = $(call github,PPUC,ppuc,$(PPUC_VERSION))
 PPUC_LICENSE = GPLv3
 PPUC_LICENSE_FILES = LICENSE
 
-LIBDMDUTIL_DEPENDENCIES = libdmdutil libpinmame cargs yaml-cpp sdl3 sdl3_image libppuc
+PPUC_DEPENDENCIES = libdmdutil libpinmame cargs yaml-cpp sdl3 sdl3_image libppuc
 
 PPUC_CONF_OPTS += -DPLATFORM=linux
 

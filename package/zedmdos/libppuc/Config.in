@@ -3,7 +3,7 @@ config BR2_PACKAGE_LIBPPUC
 
     select BR2_PACKAGE_IO_BOARDS
     select BR2_PACKAGE_LIBSERIALPORT
-    select BR2_PACKAGE_LIBYAML_CPP
+    select BR2_PACKAGE_LIBYAML
 
     help
       PPUC i/o boards communication library
