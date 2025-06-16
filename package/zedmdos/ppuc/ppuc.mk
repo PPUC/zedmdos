@@ -15,7 +15,8 @@ PPUC_CONF_OPTS += -DPLATFORM=linux
 
 define PPUC_INSTALL_TARGET_CMDS
     # copy to target
-    $(INSTALL) -D -m 0755 $(@D)/ppuc_pinmame $(TARGET_DIR)/usr/bin/ppuc
+    $(INSTALL) -D -m 0755 $(@D)/ppuc-pinmame $(TARGET_DIR)/usr/bin/ppuc-pinmame
+    $(INSTALL) -D -m 0755 $(@D)/ppuc-backbox $(TARGET_DIR)/usr/bin/ppuc-backbox
 endef
 
 $(eval $(cmake-package))
