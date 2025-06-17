@@ -154,4 +154,14 @@ ifeq ($(BR2_PACKAGE_SDL3_X11)$(BR2_PACKAGE_SDL3_WAYLAND),)
 SDL3_CONF_OPTS += -DSDL_UNIX_CONSOLE_BUILD=ON
 endif
 
+# rpi 1
+ifeq ($(BR2_PACKAGE_RPI_USERLAND),y)
+SDL3_CONF_OPTS += -DSDL_RPI=ON
+endif
+
+# other rpi
+ifeq ($(BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_VC4),y)
+SDL3_CONF_OPTS += -DSDL_RPI=ON
+endif
+
 $(eval $(cmake-package))
