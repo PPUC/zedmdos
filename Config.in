@@ -13,4 +13,5 @@ menu "zedmdos"
   source "$BR2_EXTERNAL_ZEDMDOS_PATH/package/zedmdos/ppuc/Config.in"
   source "$BR2_EXTERNAL_ZEDMDOS_PATH/package/zedmdos/cargs/Config.in"
   source "$BR2_EXTERNAL_ZEDMDOS_PATH/package/zedmdos/sockpp/Config.in"
+  source "$BR2_EXTERNAL_ZEDMDOS_PATH/package/zedmdos/python-sdl2/Config.in"
 endmenu

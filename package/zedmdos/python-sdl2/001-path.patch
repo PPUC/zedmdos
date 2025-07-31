@@ -1,0 +1,13 @@
+diff --git a/sdl2/dll.py b/sdl2/dll.py
+index 2413329..58a5100 100644
+--- a/sdl2/dll.py
++++ b/sdl2/dll.py
+@@ -247,6 +247,8 @@ class DLL(object):
+             "SDL2_image": (2, 0, 1),
+             "SDL2_gfx": (1, 0, 3)
+         }
++        if path is None:
++            path = "/usr/lib"
+         foundlibs = _findlib(libnames, path)
+         dllmsg = "PYSDL2_DLL_PATH: %s" % (os.getenv("PYSDL2_DLL_PATH") or "unset")
+         if len(foundlibs) == 0:
