@@ -4,7 +4,8 @@ RUN dpkg --add-architecture i386 && \
 	apt-get update && \
 	apt-get install -y -o APT::Immediate-Configure=0 \
 	build-essential \
-        locales \
+	git \
+	locales \
 	file \
 	wget \
 	cpio \

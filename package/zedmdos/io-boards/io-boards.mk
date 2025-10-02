@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-IO_BOARDS_VERSION = 3f6eeaad92624d6aceafffa079670d51194be1f6
+IO_BOARDS_VERSION = f4750a07d31176ff2a2d3e677541a06b5fc6f976
 IO_BOARDS_SITE = $(call github,PPUC,io-boards,$(IO_BOARDS_VERSION))
 IO_BOARDS_LICENSE = GPLv3
 IO_BOARDS_LICENSE_FILES = LICENSE
