@@ -5,6 +5,9 @@ image with dmdserver and dmd-play on a standalone rpi.
 
 git clone https://github.com/PPUC/zedmdos.git && cd zedmdos && git submodule init && git submodule update && make build-docker-image && make bcm2711-build
 
+### for x86_64
+make x64-build
+
 ### for rpi1, rpi zero w/wh
 make bcm2835-build
 
@@ -28,7 +31,13 @@ make build-docker-image
 ### the following command can be used to build a single package
 make bcm2711-pkg PKG=connman
 
-## burn
+## for x64 :
+- format (or reuse) a fat32 usb key
+- rename the key ZEDMDOS (label) or change the searched label in EFI/boot/grub.cfg
+- unzip zedmdos-x.zip on it
+- configure via files in configs directory
+
+## for rpi : burn
 - format a fat32 sdcard
 - unzip zedmdos-x.zip on it
 - configure via files in configs directory

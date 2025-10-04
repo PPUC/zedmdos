@@ -90,3 +90,6 @@ dl-dir:
 %-pkg:
 	$(if $(PKG),,$(error "PKG not specified!"))
 	@$(MAKE) $*-build CMD=$(PKG)
+
+%-shell: docker-image output-dir-%
+	$(RUN_DOCKER) bash
