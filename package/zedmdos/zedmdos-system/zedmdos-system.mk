@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-ZEDMDOS_SYSTEM_VERSION = 1.0-dev
+ZEDMDOS_SYSTEM_VERSION = 1.1
 ZEDMDOS_SYSTEM_LICENSE = GPL
 ZEDMDOS_SYSTEM_SOURCE=
 
