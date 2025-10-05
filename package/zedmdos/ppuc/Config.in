@@ -8,6 +8,7 @@ config BR2_PACKAGE_PPUC
     select BR2_PACKAGE_SDL3
     select BR2_PACKAGE_SDL3_IMAGE
     select BR2_PACKAGE_LIBPPUC
+    select BR2_PACKAGE_LIBFRAMEUTIL
 
     help
       Pinball Power-Up Controller

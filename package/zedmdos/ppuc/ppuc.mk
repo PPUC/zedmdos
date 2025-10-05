@@ -3,13 +3,13 @@
 # ppuc
 #
 ################################################################################
-# Version: Commits on Jun 13, 2024
-PPUC_VERSION = dfc6f008f59cfd7ff25da250d6b8eab14c216428
+# Version: Commits on Aug 26, 2025
+PPUC_VERSION = d8526772f8b60006753f4a7b53517024a527b975
 PPUC_SITE = $(call github,PPUC,ppuc,$(PPUC_VERSION))
 PPUC_LICENSE = GPLv3
 PPUC_LICENSE_FILES = LICENSE
 
-PPUC_DEPENDENCIES = libdmdutil libpinmame cargs yaml-cpp sdl3 sdl3_image libppuc
+PPUC_DEPENDENCIES = libdmdutil libpinmame cargs yaml-cpp sdl3 sdl3_image libppuc libframeutil
 
 PPUC_CONF_OPTS += -DPLATFORM=linux
 

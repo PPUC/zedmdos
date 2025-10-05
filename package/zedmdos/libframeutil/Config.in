@@ -1,0 +1,5 @@
+config BR2_PACKAGE_LIBFRAMEUTIL
+    bool "libframeutil"
+
+help
+      libframeutil - Some DMD frame utilities used by libzedmd and libdmdutil

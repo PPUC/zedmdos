@@ -3,7 +3,7 @@
 # libppuc
 #
 ################################################################################
-# Version: Commits on Jun 28, 2025
+# Version: Commits on Oct 5, 2025
 LIBPPUC_VERSION = 0df00b506af9afb5e190056cdd2b294cd356e749
 LIBPPUC_SITE = $(call github,PPUC,libppuc,$(LIBPPUC_VERSION))
 LIBPPUC_LICENSE = GPLv3
